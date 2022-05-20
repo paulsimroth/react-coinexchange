@@ -10,10 +10,7 @@ const TD = styled.td`
 export default class Coin extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            price: this.props.price
-        }
-        this.handleClick = this.handleClick.bind(this);
+        zhis.handleClick = this.handleClick.bind(this);
     }
 
     /* Price gets updated every 1500 milliseconds
@@ -31,10 +28,13 @@ export default class Coin extends Component {
         setInterval(callback, 1500);
     }
     */
+
     handleClick(event){
         //Prevent default of submitting form
         event.preventDefault();
 
+        this.props.handleRefresh(this.props.ticker);
+    /*
         const randomPercentage = 0.995 + Math.random() * 0.01;
 
         this.setState(function(oldState){
@@ -42,6 +42,7 @@ export default class Coin extends Component {
                 price: oldState.price * randomPercentage
             };
         })
+    */
     }
 
     render(){
@@ -49,7 +50,7 @@ export default class Coin extends Component {
         <tr>
             <TD>{this.props.name}</TD>
             <TD>{this.props.ticker}</TD>
-            <TD>${this.state.price}</TD>
+            <TD>${this.props.price}</TD>
             <TD>
                 <form action="#" method="POST">
                     <button onClick={this.handleClick}>Refresh</button>   
