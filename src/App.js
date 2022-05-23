@@ -11,53 +11,80 @@ const Div = styled.div`
 `;
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       balance: 10000,
+      showBalance: true,
       coinData: [
         {
           name: "Bitcoin",
           ticker: "BTC",
+          balance: 0.5,
           price: 28000,
         },
         {
           name: "Ethereum",
           ticker: "ETH",
+          balance: 15,
           price: 2000,
         },
         {
           name: "Tether",
           ticker: "USDT",
+          balance: 500,
           price: 1,
         },
         {
           name: "Cardano",
           ticker: "ADA",
+          balance: 1000,
           price: 0.5,
         },
         {
           name: "BNB",
           ticker: "BNB",
+          balance: 20,
           price: 305.0,
         }
       ]
     }
-    this.handleRefresh = this.handleRefresh.bind(this);
+
+  handleBalanceVisibility = () => {
+    this.setState(function (oldState) {
+      return{
+        ...oldState,
+        showBalance: !oldState.showBalance
+      }
+    });
   }
 
-  handleRefresh(valueChangeTicker) {
-    const coin  = this.state.coinData.find(({ticker}) => ticker === valueChangeTicker);
-    console.log(coin);
+  handleRefresh = (valueChangeTicker) => {
+    const newCoinData  = this.state.coinData.map( function(values) {
+
+      let newValues = {...values};
+
+      if(valueChangeTicker === values.ticker) {
+        const randomPercentage = 0.995 + Math.random() * 0.01;
+                newValues.price = newValues.price * randomPercentage;
+            };
+      return newValues;
+
+    });
+
+    this.setState({ coinData: newCoinData });
   }
 
   render() {
-      return (
-    <Div className="App">
-      <ExchangeHeader/>
-      <AccountBalance amount={this.state.balance}/>
-      <CoinList coinData = {this.state.coinData} handleRefresh = {this.handleRefresh}/>
-    </Div>
+    return (
+      <Div className="App">
+        <ExchangeHeader/>
+        <AccountBalance amount = {this.state.balance} 
+                        showBalance = {this.state.showBalance} 
+                        handleBalanceVisibility={this.handleBalanceVisibility}/>
+
+        <CoinList       coinData = {this.state.coinData} 
+                        showBalance = {this.state.showBalance}
+                        handleRefresh = {this.handleRefresh}/>
+      </Div>
   );
   }
 }
