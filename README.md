@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Getting Started with Create React App and Overview of the Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I did this react App as part of the course react Web Development 101 at Moralis Academy. It is a react web app for a coin exchange. We used the coinpaprika API to fetch data about top ranked coins. 
 
 ## Available Scripts
 
