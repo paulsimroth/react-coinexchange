@@ -1,6 +1,6 @@
 # https://paulsimroth.github.io/react-coinexchange/
 
-I did this react App as part of the course react Web Development 101 at Moralis Academy. It is a react web app for a coin exchange. We used the coinpaprika API to fetch data about top ranked coins. 
+I did this react App as part of the course React Web Development 101 at Moralis Academy. It is a react web app for a coin exchange. We used the coinpaprika API to fetch data about top ranked coins. 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
