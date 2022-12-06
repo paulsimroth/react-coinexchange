@@ -5,9 +5,7 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import axios from "axios";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/lux/bootstrap.min.css";
-
 import "@fortawesome/fontawesome-free/js/all";
 
 const Div = styled.div`
