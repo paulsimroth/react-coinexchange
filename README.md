@@ -1,4 +1,4 @@
-# https://paulsimroth.github.io/react-coinexchange/
+### https://paulsimroth.github.io/react-coinexchange/
 
 I did this react App as part of the course React Web Development 101 at Moralis Academy. It is a react web app for a coin exchange. We used the coinpaprika API to fetch data about top ranked coins. 
 
