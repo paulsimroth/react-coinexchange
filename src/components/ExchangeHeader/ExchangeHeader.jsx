@@ -3,7 +3,7 @@ import logo from "../../logo.svg";
 import styled from "styled-components";
 
 const Img = styled.img`
-    height: 8rem;
+    height: 6rem;
     pointer-events: none;
 `;
 
@@ -14,12 +14,12 @@ const Header = styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     color: white;
 `;
 
 const H1 = styled.h1`
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: white;
     line-heigth: 8rem;
     font-weight: bold;
@@ -32,9 +32,9 @@ export default class ExchangeHeader extends Component {
         <Header>
             <Img src={logo} alt="React Logo"/>
             <H1>
-                React Coin Exchange Project
+                Coin Exchange Project
             </H1>
         </Header>
     )
   }
-}
+};

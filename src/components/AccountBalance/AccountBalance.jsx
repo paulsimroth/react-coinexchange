@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 const Section = styled.section `
   font-size: 2rem;
-  background-color: rgb(104, 194, 164);
   text-align: center;
   margin-bottom: 2rem;
   line-height: 3rem;
@@ -15,8 +14,9 @@ const Button = styled.button `
   margin: 0 8px;
 `;
 
-const BalanceToggleButton = styled(Button) `
-  width: 150px;
+const BalanceToggleButton = styled.button `
+  margin: 0 10px;
+  width: 180px;
 `;
 
 const Balance = styled.div `
@@ -36,7 +36,7 @@ export default function AccountBalance(props) {
   const buttonText = props.showBalance ? "Hide Balance" : "Show Balance";
   let content = "\u00A0";
   if (props.showBalance) {
-    content = <>{formatter.format(props.amount)}</>
+    content = <>Balance: {formatter.format(props.amount)}</>
   };
   const buttonClass = 'btn ' + (props.showBalance ? 'btn-warning' : 'btn-info');
 
@@ -59,9 +59,8 @@ export default function AccountBalance(props) {
       </Section>
     </>
   );
-}
-
+};
 
 AccountBalance.propTypes = {
     amount: PropTypes.number.isRequired
-}
+};

@@ -17,17 +17,25 @@ const Div = styled.div`
 //Counter on how many coins are displayed is hardcoded
 const COIN_COUNT = 10;
 
+//Price is formatted to wanted length
 const formatPrice = price => parseFloat(Number(price).toFixed(4));
 
+//App
 function App (props) {
   const [balance, setBalance] = useState(10000);
   const [showBalance, setShowBalance] = useState(false);
   const [coinData, setCoinData] = useState([]);
 
+  useEffect(function() {
+    if (coinData.length === 0){
+      componentDidMount();
+    }
+  });
+
   const componentDidMount = async () => {
       const response = await axios.get("https://api.coinpaprika.com/v1/coins");
       const coinIds = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
-      const tickerUrl = "https://api.coinpaprika.com/v1/tickers";
+      const tickerUrl = "https://api.coinpaprika.com/v1/tickers/";
       const promises = coinIds.map(id => axios.get(tickerUrl + id));
       const coinData = await Promise.all(promises);
       const coinPriceData = coinData.map(function(response) {
@@ -40,16 +48,11 @@ function App (props) {
             price: formatPrice(coin.quotes.USD.price),
           };
       });
-      //Retrieve prices here
+      //Retrieve prices
       setCoinData(coinPriceData);
     }
 
-  useEffect(function() {
-    if (coinData.length === 0){
-      componentDidMount();
-    }
-  });
-
+  //balance gets increased by 1200 units
   const handleBrrrr = () => {
     setBalance(oldBalance => oldBalance + 1200);
   }
@@ -75,19 +78,19 @@ function App (props) {
     const tickerUrl = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`;
     const response = await axios.get(tickerUrl);
     const newPrice = formatPrice(response.data.quotes.USD.price);
+
     const newCoinData  = coinData.map( function(values) {
-
-    let newValues = {...values};
-
-    if(valueChangeId === values.key) {
-              newValues.price = newPrice;
-          };
-    return newValues;
+      let newValues = {...values};
+      if(valueChangeId === values.key) {
+                newValues.price = newPrice;
+            };
+      return newValues;
 
     });
     setCoinData(newCoinData);
   }
 
+  //Page
   return (
     <Div className="App">
       <ExchangeHeader/>
@@ -103,6 +106,6 @@ function App (props) {
         handleRefresh = {handleRefresh}/>
     </Div>
   );
-}
+};
 
 export default App;

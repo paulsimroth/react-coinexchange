@@ -5,20 +5,25 @@ import PropTypes from "prop-types";
 const Td = styled.td`
     border: 1px solid #ccc;
     width: 14vw;
+    text-align: center;
+    vertical-align: middle;
 `;
 
 const TdControls = styled(Td) `
-    width: 34vw;
+    width: 25vw;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 `;
 
 const TdName = styled(Td) `
-    width: 24vw;
+    width: 23vw;
 `;
 
 const Button = styled.button `
     font-size: 13px;
-    width: 64px;
-    margin: 3px 5px 0;
+    margin: 3px;
+
 `;
 
 export default function Coin(props) {
@@ -60,10 +65,10 @@ export default function Coin(props) {
         </tr>
         );
 
-}
+};
 
 Coin.propTypes = {
     name: PropTypes.string.isRequired,
     ticker: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired
-}
+};
